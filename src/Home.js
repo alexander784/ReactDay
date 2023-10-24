@@ -2,7 +2,7 @@ const Home = () => {
     // let name = 'mario';
 
     const handleClick = () => {
-        name = 'luiji'
+        // name = 'luiji'
     }
     return ( 
         <div className="home">
