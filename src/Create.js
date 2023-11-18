@@ -2,11 +2,28 @@ import { useState } from 'react'
 const Create = () => {
     const [ title, setTitle] = useState('');//track the title
     const [body, setBody] = useState('');
+    const [author, setAuthor] = useState('');
+    const [isPending, setIsPending] = useState(false);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const blog = {title,body,author };
+        fetch('', {
+            method:'POST',
+            headers:{ 'Content-Type': "application/json" },
+            body:JSON.stringify(blog)
+        }).then(() => {
+            setIsPending(false);
+            
+
+        })
+    }
     
     return (
         <div className="create">
             <h2>Add New Blog</h2> 
-            <form>
+            <form onSubmit={}>
                 <label>Blog title</label>
                 <input type="text"
                 requred
@@ -28,7 +45,8 @@ const Create = () => {
                     <option value="mario">yoshi</option>
                     
                 </select>
-                <button>Add blog</button>
+                {!isPending && <button>Add blog</button>}
+                {!isPending && <button disabled>Adding blog...</button>}
 
 
             </form>
